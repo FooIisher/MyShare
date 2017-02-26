@@ -35,7 +35,73 @@ public class LinkRun {
 //		System.out.println("mergeDoubleLinks: "+ mergeDoubleLinks(left,right).toString());
 		
 //		System.out.println("mergeSortLink: "+ mergeSort(head).toString());
-		System.out.println("insertSortLink: " + insertSort(head).toString());
+//		System.out.println("insertSortLink: " + insertSort(head).toString());
+//		System.out.println("complicatedSortLink: " + complicatedSort(head).toString());
+	}
+	
+
+	/**
+	 * 判断一个单链表是否存在环
+	 * @param head
+	 * @return
+	 */
+	 public boolean hasCycle(LinkNode head) {
+	        
+	        if(head != null){
+	        	LinkNode fast = head;
+	        	LinkNode slow = head;
+	            while(fast!=null&&fast.next!=null){
+	                fast = fast.next.next;
+	                slow = slow.next;
+	                if(fast == slow){
+	                    return true;
+	                }
+	            }
+	        }
+	       	
+	        
+	        return false;
+	    }
+	
+	/**
+	 * Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+	 * reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
+	 * @param head
+	 * @return
+	 */
+	private static LinkNode complicatedSort(LinkNode head) {
+		LinkNode mid = getMiddleLinkNode(head);
+		LinkNode right = mid.next;
+		LinkNode left = head;
+		mid.next = null; 
+		return mergeDoubleLinksByTurns(left, reverseLink(right));
+	}
+
+	/**
+	 * 将两个链表元素依次互相插入
+	 * @param left
+	 * @param right
+	 * @return
+	 */
+	private static LinkNode mergeDoubleLinksByTurns(LinkNode left,
+			LinkNode right) {
+		LinkNode result = new LinkNode(0);
+		LinkNode temp = result; 
+		while(right!=null||left!=null){
+			if(left!=null){
+				temp.next = new LinkNode(left.val);
+				left = left.next;
+				temp = temp.next;
+			}
+			
+			if(right!=null){
+				temp.next = new LinkNode(right.val);
+				right = right.next;
+				temp = temp.next;
+			}	
+		}
+		
+		return result.next;
 	}
 
 	/**
@@ -93,7 +159,7 @@ public class LinkRun {
 		LinkNode right = mid.next;
 		mid.next = null;
 		LinkNode left = head;
-		return mergeDoubleLinks(mergeSort(left),mergeSort(right));
+		return mergeDoubleSortLinks(mergeSort(left),mergeSort(right));
 	}
 
 	/**
@@ -102,7 +168,7 @@ public class LinkRun {
 	 * @param right
 	 * @return
 	 */
-	private static LinkNode mergeDoubleLinks(LinkNode left, LinkNode right) {
+	private static LinkNode mergeDoubleSortLinks(LinkNode left, LinkNode right) {
 		LinkNode result = new LinkNode(0);
 		LinkNode temp = result;
 		
@@ -164,6 +230,10 @@ public class LinkRun {
 	
 	private static LinkNode reverseLink(LinkNode head) {
 		LinkNode result = null ;
+		if(head==null){
+			return result;
+		}
+		
 		if(head.next==null){
 			result = head;
 		}else{
