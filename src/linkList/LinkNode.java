@@ -1,4 +1,4 @@
-package linkLine;
+package linkList;
 
 
 public class LinkNode {
