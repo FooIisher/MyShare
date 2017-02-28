@@ -10,7 +10,7 @@ import java.util.Scanner;
  *      2.包括大小写字母.数字.其它符号,以上四种至少三种     
  *     
  */
-public class CodeIsLeagle {
+public class CodeIsLeagle  {
 
 	public static void main(String[] args) {
 
