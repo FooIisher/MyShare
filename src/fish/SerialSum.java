@@ -2,6 +2,14 @@ package fish;
 
 import java.util.Scanner;
 
+/**
+ * 求一个数N中是那个几个连续数的和
+ * 连续数的个数  >L
+ * 如 输入9 3
+ * 输出 2 3 4 
+ * @author fish
+ *
+ */
 public class SerialSum {
 
 	public static void main(String[] args) {
