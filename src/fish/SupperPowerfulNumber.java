@@ -29,9 +29,37 @@ public class SupperPowerfulNumber {
 	}
 
 	
-	private static char[] handler2(Long in) {
-		// TODO Auto-generated method stub
-		return null;
+	private static String handler2(long in) {
+		int num=0;
+		double number = (double) in;
+		while(checkSqrt(number)&&number>3){
+			num++;
+			number =  Math.sqrt(number);
+		}
+		
+		if(num==0){
+			return "No";
+		}else{
+			int result = (int) number;
+			int count = (int) Math.pow(2, num);
+			return result+" "+count ;
+		}
+		
+	}
+
+/**
+ * 检验这个数开方后是否还是整数
+ * @param number
+ * @return
+ */
+	private static boolean checkSqrt(double number) {
+		double result = Math.sqrt(number);
+		int temp = (int) result;
+		double check = (double) temp;
+		if(result == check){
+			return true;
+		}
+		return false;
 	}
 
 
