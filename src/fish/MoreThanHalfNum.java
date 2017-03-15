@@ -12,6 +12,15 @@ import java.util.HashMap;
 public class MoreThanHalfNum {
 	
 	public static int solution(int [] array) {
+		
+		if(array.length==0){
+			 return 0;
+		}
+		
+		if(array.length==1){
+			 return array[0];
+		}
+		
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         for(int in:array){
             if(map.containsKey(in)){
