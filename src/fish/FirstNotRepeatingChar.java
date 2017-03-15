@@ -1,8 +1,8 @@
 package fish;
 
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
+
 
 /***
  * 在一个字符串(1<=字符串长度<=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置
@@ -12,7 +12,7 @@ import java.util.LinkedList;
 public class FirstNotRepeatingChar {
 
 	public static void main(String[] args) {
-		String in ="ASADSDSSSSSSSSSDDDDDFDDASDSADASD"; 
+		String in ="ASADSDSSSSSSSSSDDDDDFFDDAASDSADASD"; 
 		System.out.println(solution(in));
 	}
 
