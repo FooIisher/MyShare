@@ -19,13 +19,11 @@ public class LastRemaining {
 	}
 	
 	public static int  solution(int n, int m) {
-		int[] numbers =new int[n];
-		for(int i=0;i<numbers.length;i++){
-			numbers[i] = i;
-		}
-		
+		if(n<1||m<1) return -1;
+        
+        int[] numbers =new int[n];
 		int start =-1;
-		int count =0;
+		int count =n;
 		int step=0;
 		while(count>0){
 			start++;
