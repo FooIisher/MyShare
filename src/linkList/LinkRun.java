@@ -1,6 +1,10 @@
 package linkList;
 
+
 import java.util.Scanner;
+import java.util.Stack;
+
+
 
 /**
  * 
@@ -37,8 +41,65 @@ public class LinkRun {
 //		System.out.println("mergeSortLink: "+ mergeSort(head).toString());
 //		System.out.println("insertSortLink: " + insertSort(head).toString());
 //		System.out.println("complicatedSortLink: " + complicatedSort(head).toString());
+
+//		System.out.println("checkMirroLink1: " + checkMirroLink1(head));
+		System.out.println("checkMirroLink2: " + checkMirroLink2(head));
 	}
 	
+	/**
+	 * 检查一个链表是否是镜像链表
+	 * 利栈来协助对比
+	 * @param head
+	 * @return
+	 */
+	private static boolean checkMirroLink2(LinkNode head) {
+		long start = System.currentTimeMillis();
+		Stack<Integer> stack = new Stack<Integer>();
+		LinkNode temp = head;
+		int length =0;
+		while(temp!=null){
+			stack.add(temp.val);
+			temp=temp.next;
+			length++;
+		}
+		
+		while(stack.size()>length/2){
+			if(head.val==stack.pop()){
+				head=head.next;
+			}else{
+				System.out.println("checkMirroLink2 used: "+ (System.currentTimeMillis()-start));
+				return false;
+			}
+		}
+		System.out.println("checkMirroLink2 used: "+ (System.currentTimeMillis()-start));
+		return true;
+	}
+
+
+	/**
+	 * 检查一个链表是否是镜像链表
+	 * 利用找到终点在翻转后半部分 在依次与前半部分对比
+	 * @param head
+	 * @return
+	 */
+	private static boolean checkMirroLink1(LinkNode head) {
+		long start = System.currentTimeMillis();
+		LinkNode mid = getMiddleLinkNode(head);
+		LinkNode lastReversed = reverseLink(mid.next);
+		mid.next = null;
+		while(head!=null&&lastReversed!=null){
+			if(head.val==lastReversed.val){
+				head = head.next;
+				lastReversed = lastReversed.next;
+			}else{
+				System.out.println("checkMirroLink1 used: "+ (System.currentTimeMillis()-start));
+				return false;
+			}
+		}
+		System.out.println("checkMirroLink1 used: "+ (System.currentTimeMillis()-start));
+		return true;
+	}
+
 
 	/**
 	 * 判断一个单链表是否存在环
