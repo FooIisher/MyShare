@@ -15,15 +15,15 @@ public class LinkRun {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		LinkNode head = null ;
+		ListNode head = null ;
 		int num =sc.nextInt();
-			LinkNode temp = null ;
+			ListNode temp = null ;
 			for(int i=0;i<num;i++){
 				if(i==0){
-					head = new LinkNode(sc.nextInt());
+					head = new ListNode(sc.nextInt());
 					temp = head;
 				}else{
-					temp.next= new LinkNode(sc.nextInt());
+					temp.next= new ListNode(sc.nextInt());
 					temp=temp.next;
 				}
 				
@@ -31,10 +31,10 @@ public class LinkRun {
 		sc.close();
 		System.out.println(head.toString());
 //		System.out.println("reverseLink: "+ reverseLink(head).toString());
-//		System.out.println("getMiddleLink: "+ getMiddleLinkNode(head).toString());
-//		LinkNode middle = getMiddleLinkNode(head);
-//		LinkNode left = head;
-//		LinkNode right = middle.next;
+//		System.out.println("getMiddleLink: "+ getMiddleListNode(head).toString());
+//		ListNode middle = getMiddleListNode(head);
+//		ListNode left = head;
+//		ListNode right = middle.next;
 //		middle.next =null;
 //		System.out.println("mergeDoubleLinks: "+ mergeDoubleLinks(left,right).toString());
 		
@@ -51,34 +51,26 @@ public class LinkRun {
 	 * @param pHead
 	 * @return
 	 */
-	 public static LinkNode deleteDuplication(LinkNode pHead){
+	 public static ListNode deleteDuplication(ListNode pHead){
 		 
-		 LinkNode perior = new LinkNode(-1);
+		 ListNode perior = new ListNode(-1);
 		 perior.next = pHead;
-		 pHead = perior;
-		 LinkNode first = pHead.next;
-	
-	     while(first.next!=null){
-
-	    	 LinkNode follow = first.next;
-	    	 if(first.val!=follow.val){
-	    		 perior = perior.next;
-	    		 first = perior.next;
-	    	 }else{
-	    		 while(first.val==follow.val){
-	    			 if(follow.next!=null){
-	    				 follow = follow.next;
-	    			 }else{
-	    				 break;
-	    			 }
-		    		
-		    	 }
-		    	 perior.next = follow;
-		    	 perior = perior.next;
-		    	 first = perior.next;
-	    	 }
-	       }
-	       return pHead.next;  
+		 ListNode last = perior;
+		 ListNode temp = pHead;
+		 while(temp!=null&&temp.next!=null){
+			 if(temp.val==temp.next.val){
+				 int val = temp.val;
+				 while(temp!=null&&temp.val==val){
+					 temp = temp.next;
+				 }
+				 last.next = temp;
+			 }else{
+				 last = temp;
+				 temp = temp.next;
+			 }
+		 }
+	    
+	     return perior.next;  
 	}
 	
 	/**
@@ -87,10 +79,10 @@ public class LinkRun {
 	 * @param head
 	 * @return
 	 */
-	private static boolean checkMirroLink2(LinkNode head) {
+	private static boolean checkMirroLink2(ListNode head) {
 		long start = System.currentTimeMillis();
 		Stack<Integer> stack = new Stack<Integer>();
-		LinkNode temp = head;
+		ListNode temp = head;
 		int length =0;
 		while(temp!=null){
 			stack.add(temp.val);
@@ -117,10 +109,10 @@ public class LinkRun {
 	 * @param head
 	 * @return
 	 */
-	private static boolean checkMirroLink1(LinkNode head) {
+	private static boolean checkMirroLink1(ListNode head) {
 		long start = System.currentTimeMillis();
-		LinkNode mid = getMiddleLinkNode(head);
-		LinkNode lastReversed = reverseLink(mid.next);
+		ListNode mid = getMiddleListNode(head);
+		ListNode lastReversed = reverseLink(mid.next);
 		mid.next = null;
 		while(head!=null&&lastReversed!=null){
 			if(head.val==lastReversed.val){
@@ -141,11 +133,11 @@ public class LinkRun {
 	 * @param head
 	 * @return
 	 */
-	 public boolean hasCycle(LinkNode head) {
+	 public boolean hasCycle(ListNode head) {
 	        
 	        if(head != null){
-	        	LinkNode fast = head;
-	        	LinkNode slow = head;
+	        	ListNode fast = head;
+	        	ListNode slow = head;
 	            while(fast!=null&&fast.next!=null){
 	                fast = fast.next.next;
 	                slow = slow.next;
@@ -165,10 +157,10 @@ public class LinkRun {
 	 * @param head
 	 * @return
 	 */
-	private static LinkNode complicatedSort(LinkNode head) {
-		LinkNode mid = getMiddleLinkNode(head);
-		LinkNode right = mid.next;
-		LinkNode left = head;
+	private static ListNode complicatedSort(ListNode head) {
+		ListNode mid = getMiddleListNode(head);
+		ListNode right = mid.next;
+		ListNode left = head;
 		mid.next = null; 
 		return mergeDoubleLinksByTurns(left, reverseLink(right));
 	}
@@ -179,19 +171,19 @@ public class LinkRun {
 	 * @param right
 	 * @return
 	 */
-	private static LinkNode mergeDoubleLinksByTurns(LinkNode left,
-			LinkNode right) {
-		LinkNode result = new LinkNode(0);
-		LinkNode temp = result; 
+	private static ListNode mergeDoubleLinksByTurns(ListNode left,
+			ListNode right) {
+		ListNode result = new ListNode(0);
+		ListNode temp = result; 
 		while(right!=null||left!=null){
 			if(left!=null){
-				temp.next = new LinkNode(left.val);
+				temp.next = new ListNode(left.val);
 				left = left.next;
 				temp = temp.next;
 			}
 			
 			if(right!=null){
-				temp.next = new LinkNode(right.val);
+				temp.next = new ListNode(right.val);
 				right = right.next;
 				temp = temp.next;
 			}	
@@ -205,33 +197,33 @@ public class LinkRun {
 	 * @param head
 	 * @return
 	 */
-	private static LinkNode insertSort(LinkNode head) {
-		LinkNode result = null;
+	private static ListNode insertSort(ListNode head) {
+		ListNode result = null;
 		if(head==null||head.next==null){
 			result =head;
 		}else{
-			result = new LinkNode(head.val);
+			result = new ListNode(head.val);
 			head =head.next;
 			while(head!=null){
 				if(head.val<result.val){
-					LinkNode temp = new LinkNode(head.val);
+					ListNode temp = new ListNode(head.val);
 					temp.next =result;
 					result =temp;
 				}else{
-					LinkNode temp = result;
+					ListNode temp = result;
 					if(temp.next!=null){
 						while(temp.next!=null && temp.next.val<head.val){
 							temp =temp.next;
 						}
 						if(temp.next != null){
-						LinkNode insert = new LinkNode(head.val);
+						ListNode insert = new ListNode(head.val);
 						insert.next = temp.next;
 						temp.next = insert;
 						}else{
-							temp.next = new  LinkNode(head.val);
+							temp.next = new  ListNode(head.val);
 						}
 					}else{
-						temp.next = new  LinkNode(head.val);
+						temp.next = new  ListNode(head.val);
 					}
 				}
 				
@@ -247,14 +239,14 @@ public class LinkRun {
 	 * @param head
 	 * @return
 	 */
-	private static LinkNode mergeSort(LinkNode head) {
+	private static ListNode mergeSort(ListNode head) {
 		if(head==null||head.next==null){
 			   return head;
 		}
-		LinkNode mid = getMiddleLinkNode(head);
-		LinkNode right = mid.next;
+		ListNode mid = getMiddleListNode(head);
+		ListNode right = mid.next;
 		mid.next = null;
-		LinkNode left = head;
+		ListNode left = head;
 		return mergeDoubleSortLinks(mergeSort(left),mergeSort(right));
 	}
 
@@ -264,9 +256,9 @@ public class LinkRun {
 	 * @param right
 	 * @return
 	 */
-	private static LinkNode mergeDoubleSortLinks(LinkNode left, LinkNode right) {
-		LinkNode result = new LinkNode(0);
-		LinkNode temp = result;
+	private static ListNode mergeDoubleSortLinks(ListNode left, ListNode right) {
+		ListNode result = new ListNode(0);
+		ListNode temp = result;
 		
 		if(left==null){
 			result =right;
@@ -278,11 +270,11 @@ public class LinkRun {
 		while(left!=null&&right!=null){
 			
 			if(left.val<right.val){
-				temp.next = new LinkNode(left.val);
+				temp.next = new ListNode(left.val);
 				temp=temp.next;
 				left = left.next;
 			}else{
-				temp.next = new LinkNode(right.val);
+				temp.next = new ListNode(right.val);
 				temp=temp.next;
 				right = right.next;
 			}
@@ -304,9 +296,9 @@ public class LinkRun {
 	 * @param head
 	 * @return
 	 */
-	private static LinkNode getMiddleLinkNode(LinkNode head) {
-		LinkNode slow = head;
-		LinkNode fast = head;
+	private static ListNode getMiddleListNode(ListNode head) {
+		ListNode slow = head;
+		ListNode fast = head;
 		while(fast.next!=null&&fast!=null){
 			if(fast.next.next!=null){
 				fast=fast.next.next;
@@ -324,8 +316,8 @@ public class LinkRun {
 	 * @return
 	 */
 	
-	private static LinkNode reverseLink(LinkNode head) {
-		LinkNode result = null ;
+	private static ListNode reverseLink(ListNode head) {
+		ListNode result = null ;
 		if(head==null){
 			return result;
 		}
@@ -333,10 +325,10 @@ public class LinkRun {
 		if(head.next==null){
 			result = head;
 		}else{
-			LinkNode temp = result ;
+			ListNode temp = result ;
 			while(head!=null){
 				temp = result;
-				result = new LinkNode(head.val);
+				result = new ListNode(head.val);
 				result.next = temp;
 				head = head.next;
 			}

@@ -9,9 +9,9 @@ import java.util.Stack;
  */
 public class FindFirstCommonNode {
 	
-	public LinkNode getCommonNode(LinkNode link1,LinkNode link2){
-		Stack<LinkNode> stack1= new Stack<LinkNode>();
-		Stack<LinkNode> stack2= new Stack<LinkNode>();
+	public ListNode getCommonNode(ListNode link1,ListNode link2){
+		Stack<ListNode> stack1= new Stack<ListNode>();
+		Stack<ListNode> stack2= new Stack<ListNode>();
 		
 		while(link1.next!=null){
 			stack1.add(link1);

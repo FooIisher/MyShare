@@ -1,11 +1,11 @@
 package linkList;
 
 
-public class LinkNode {
+public class ListNode {
      int val;
-     LinkNode next;
+     ListNode next;
      
-     LinkNode(int x) {
+     ListNode(int x) {
          this.val = x;
          this.next = null;
      }
@@ -16,9 +16,11 @@ public class LinkNode {
       */
 	@Override
 	public String toString() {
+		
+		
 		StringBuffer sb = new StringBuffer(""+this.val);
 		if(this.next!=null){
-			LinkNode temp = this.next;
+			ListNode temp = this.next;
 			while(temp!=null){
 				sb.append(" -> "+ temp.val);
 				temp=temp.next;
