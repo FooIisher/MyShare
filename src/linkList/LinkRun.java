@@ -43,7 +43,42 @@ public class LinkRun {
 //		System.out.println("complicatedSortLink: " + complicatedSort(head).toString());
 
 //		System.out.println("checkMirroLink1: " + checkMirroLink1(head));
-		System.out.println("checkMirroLink2: " + checkMirroLink2(head));
+//		System.out.println("checkMirroLink2: " + checkMirroLink2(head));
+		System.out.println("deleteDuplication: " + deleteDuplication(head).toString());
+	}
+	/**
+	 * 删除重复的节点
+	 * @param pHead
+	 * @return
+	 */
+	 public static LinkNode deleteDuplication(LinkNode pHead){
+		 
+		 LinkNode perior = new LinkNode(-1);
+		 perior.next = pHead;
+		 pHead = perior;
+		 LinkNode first = pHead.next;
+	
+	     while(first.next!=null){
+
+	    	 LinkNode follow = first.next;
+	    	 if(first.val!=follow.val){
+	    		 perior = perior.next;
+	    		 first = perior.next;
+	    	 }else{
+	    		 while(first.val==follow.val){
+	    			 if(follow.next!=null){
+	    				 follow = follow.next;
+	    			 }else{
+	    				 break;
+	    			 }
+		    		
+		    	 }
+		    	 perior.next = follow;
+		    	 perior = perior.next;
+		    	 first = perior.next;
+	    	 }
+	       }
+	       return pHead.next;  
 	}
 	
 	/**
