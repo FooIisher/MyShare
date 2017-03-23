@@ -21,7 +21,7 @@ public class RobotMove {
 
 	private static int handler(int i, int j, int rows, int cols, int[][] flag,
 			int threshold) {
-		if(i<0||i>=rows||j<0||j>cols||numCount(i,j)>threshold||flag[i][j]==1){
+		if(i<0||i>=rows||j<0||j>=cols||numCount(i)+numCount(j)>threshold||flag[i][j]==1){
 			return 0;
 		}
 		flag[i][j] =1;
@@ -31,22 +31,17 @@ public class RobotMove {
 				  handler(i, j-1, rows, cols, flag, threshold)+1;
 	}
 
-	private static int numCount(int i, int j) {
+	private static int numCount(int i) {
 		int sum = 0;
 		while(i!=0){
 			sum = + i%10;
 			i = i/10;
 		}
 		
-		while(j!=0){
-			sum = + j%10;
-			i = j/10;
-		}
-
 		return sum;
 	}
 	
 	public static void main(String[] args){
-		System.out.print("result :"+ movingCount(5, 10, 10));
+		System.out.print("result :"+ movingCount(15, 20, 20));
 	}
 }
