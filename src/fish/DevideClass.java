@@ -1,6 +1,7 @@
 package fish;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 /**
  * 有N个字符串，他想将这些字符串分类，他认为两个字符串A和B属于同一类需要满足以下条件：
@@ -39,20 +40,23 @@ public class DevideClass {
 		ArrayList<String> other = new ArrayList<String>();
 		int result=1;
 		for(int i=1;i<ins.size();i++){
-			if(!check(first,ins.get(i))){
+			if(!check2(first,ins.get(i))){
 				other.add(ins.get(i));
 			}
 		}
 		if(other.size()!=0){
 			result = result+ hander(other.size(), other);
 		}
-		
-	
-		
-		
+
 		return result;
 	}
 
+	/**
+	 * 检查验连个字符串是否属于一类
+	 * @param in
+	 * @param check
+	 * @return
+	 */
 	private static boolean check(String in, String check) {
 		if(in.length()!=check.length()){
 			return false;
@@ -79,4 +83,38 @@ public class DevideClass {
 		return true;
 	}
 
+	private static boolean check2(String in, String check) {
+		if(in.length()!= check.length()){
+			return false;
+		}
+		
+		HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+		char[] ins = in.toCharArray();
+		for(char inchar:ins){
+			if(map.containsKey(inchar)){
+				int count = map.get(inchar);
+				map.put(inchar, count+1);
+			}else{
+				map.put(inchar, 1);
+			}
+		}
+		
+		char[] checks =check.toCharArray();
+		for(char checkChar:checks){
+			if(map.containsKey(checkChar)){
+				int count=map.get(checkChar);
+				map.put(checkChar, count-1);
+			}else{
+				return false;
+			}
+		}
+		
+		for(Integer count:map.values()){
+			if(count!=0){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 }
