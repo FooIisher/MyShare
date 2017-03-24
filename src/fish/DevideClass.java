@@ -2,7 +2,17 @@ package fish;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * 有N个字符串，他想将这些字符串分类，他认为两个字符串A和B属于同一类需要满足以下条件：
+ * A中交换任意位置的两个字符，最终可以得到B，交换的次数不限。比如：abc与bca就是同一类字符串。
+ * 现在牛牛想知道这N个字符串可以分成几类。 
+ * @author fish
+ * 思路：逐个去分解，先判别和第一个字符串是否为一类，如果是就被过滤，不是则添加到other列表中记录
+ *  	再去处理other列表中字符，看有几类，依次处理直到 other中不存在数据
+ * 
+ *  判断两个字符串是否为一类的算法，要注意 aab 和abb 这种包含重复字符串的情况
+ * 
+ */
 public class DevideClass {
 
 	public static void main(String[] args) {
@@ -13,7 +23,7 @@ public class DevideClass {
 			ins.add(sc.next());
 		}
 		System.out.print(hander(num,ins));
-
+		sc.close();
 	}
 
 	private static int hander(int num, ArrayList<String> ins) {
@@ -31,11 +41,13 @@ public class DevideClass {
 		for(int i=1;i<ins.size();i++){
 			if(!check(first,ins.get(i))){
 				other.add(ins.get(i));
-				result++;
 			}
 		}
+		if(other.size()!=0){
+			result = result+ hander(other.size(), other);
+		}
 		
-		result = result+ hander(other.size(), other);
+	
 		
 		
 		return result;
@@ -50,9 +62,11 @@ public class DevideClass {
 		char[] checks =check.toCharArray();
 		int flag[] = new int[checks.length];
 		for(char inchar:ins){
+			boolean find = false;
 			for(int i=0;i<check.length();i++){
-				if(inchar==checks[i]&&flag[i]==0){
+				if(inchar==checks[i]&&flag[i]==0&&!find){
 					flag[i]=1;
+					find = true;
 				}
 			}
 		}
