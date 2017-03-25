@@ -3,7 +3,12 @@ package fish;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
+/**
+ * 本体运行时间未达标   
+ * 没有找出对应规律
+ * @author fish
+ *
+ */
 public class MagicCircle {
 
 	public static void main(String[] args) {

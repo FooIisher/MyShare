@@ -2,7 +2,11 @@ package fish;
 import java.util.Scanner;
 
 
-
+/**
+ * BBGGB 将其换成BBBGG 需要移动的词最少 求出最少次数
+ * @author fish
+ *
+ */
 public class ChangePosition {
 
 	public static void main(String[] args) {

@@ -1,5 +1,10 @@
 package fish;
 import java.util.Scanner;
+/**
+ * 求一个数可有有几组质素和
+ * @author fish
+ *
+ */
 public class SumOfZhisu{
   public static void main(String[] args){
   	Scanner sc = new Scanner(System.in);
