@@ -19,6 +19,7 @@ public class CodeIsLeagle  {
 			String in = sc.next();
 			System.out.println("Code: "+in+" isleagle: "+ isLeagle(in));
 		}
+		sc.close();
 	}
 
 	private static boolean isLeagle(String in) {

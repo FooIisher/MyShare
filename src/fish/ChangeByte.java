@@ -30,7 +30,7 @@ public class ChangeByte {
 				num=count;
 			}
 		}
-		
+		sc.close();
 		System.out.println(num);
 
 	}

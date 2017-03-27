@@ -15,6 +15,7 @@ public class CheckMirrowWord {
 			Scanner sc = new Scanner(System.in);
 			String input = sc.nextLine();
 			System.out.println(checkMirrowWor(input));
+			sc.close();
 		}
 			
 		

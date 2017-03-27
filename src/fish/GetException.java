@@ -1,3 +1,4 @@
+package fish;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 /**
@@ -6,7 +7,7 @@ import java.util.Scanner;
  * @author fish
  *
  */
-public class Main{
+public class GetException{
 	public static void main(String[] args){
     	Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -17,6 +18,7 @@ public class Main{
             p[i] = sc.nextInt();
         }
         System.out.println(handler(n,x,p));
+        sc.close();
     }
       
     public static String handler(int n,int[] x,int[] p){

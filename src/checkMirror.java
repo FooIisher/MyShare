@@ -1,7 +1,11 @@
-package fish;
+
 
 import java.util.Scanner;
-
+/**
+ * Î´Íê³É
+ * @author fish
+ *
+ */
 public class checkMirror {
 
 	 public static void main(String[] args) {

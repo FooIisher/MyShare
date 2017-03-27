@@ -14,7 +14,7 @@ public class CheckContinue {
 		Scanner sc = new Scanner(System.in);
 		String[] input = sc.nextLine().split(" ");
 		System.out.println(check(input));
-		
+		sc.close();
 	}
 	
 	public static int check(String[] str){
