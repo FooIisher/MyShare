@@ -10,7 +10,69 @@ import fish.Test.A;
  *
  */
 public class FindContinuousSequence {
-	 public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
+	
+	/** 
+	 * 思路2：
+	 * 初始化small=1，big=2;
+	 * small到big序列和小于sum，big++;大于sum，small++;
+	 * 当small增加到(1+sum)/2是停止
+	 * @param sum
+	 * @return
+	 */
+	 public ArrayList<ArrayList<Integer>> FindContinuousSequence2(int sum) {
+		 
+		 ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+		 ArrayList<Integer> one = null;
+		 if(sum<2){
+			 return result;
+		 }
+		 int first =1;
+		 int last =2;
+		 while(first!=(sum+1)/2){
+			 int temp =getSum(first,last);
+			 if(temp==sum){
+				 one = new ArrayList<Integer>();
+				 for(int i=first;i<=last;i++){
+					 one.add(i);
+				 }
+				 result.add(one);
+				 first++;
+				 last++;
+			 }
+			 if(temp<sum){
+				 last++;
+			 }
+			 if(temp>sum){
+				 first++;
+			 }
+			 
+		 }
+		 return result;
+		 
+	 }
+	
+	 /**
+	  * 求和
+	  * @param first
+	  * @param last
+	  * @return
+	  */
+	 private int getSum(int first, int last) {
+		int sum = 0;
+		for(int i=first;i<=last;i++){
+			sum = sum+i;
+		}
+		return sum;
+	}
+
+	 /**
+	  * 思路1：
+	  * 利用连续求和的可分配性质来做 
+	  * 但是无法保障顺序
+	  * @param sum
+	  * @return
+	  */
+	public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
 		 ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 		 ArrayList<Integer> one = null;
 		 
@@ -78,7 +140,7 @@ public class FindContinuousSequence {
 
 	public static void main(String[] args) {
 		FindContinuousSequence fs = new FindContinuousSequence();
-		System.out.print(fs.FindContinuousSequence(100));
+		System.out.print(fs.FindContinuousSequence2(100));
 
 	}
 
