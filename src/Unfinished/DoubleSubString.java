@@ -23,6 +23,7 @@ public class DoubleSubString {
     	sc.close();
     }
       
+	
     private static int handler1(String in ) {
     	int count = 0;//记录总的偶串数目
 		int gi = 0; //gi是用低26bit（int是32bit）表示下标为[0,i]的子串所拥分别有的字母是偶数个（0）还是奇数个（1）。
