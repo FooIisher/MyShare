@@ -2,6 +2,9 @@ package Tree;
 
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
 /**
  * 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。
@@ -13,22 +16,60 @@ import java.util.Arrays;
  */
 
 public class ConvertTree {
+	
+	public class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		
+		public TreeNode(int x) { 
+			val = x; 
+		}
+	}
+
 
 	public static void main(String[] args) {
-		int pre[] = {1,2,3,4,5,6,7};
-		int in[] = {3,2,4,1,6,5,7};
-
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] pre = new int[n];
+		int[] in = new int[n];
+		for(int i=0;i<n;i++){
+			pre[i] = sc.nextInt();
+		}
+		for(int i=0;i<n;i++){
+			in[i] = sc.nextInt();
+		}
 		TreeNode result = reConstructBinaryTree(pre,in);
 		
-		
-
+		printLine(result);
 	}
 	
-	 public static TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+	 private static void printLine(TreeNode result) {
+		if(result==null){
+			return;
+		}
+		 Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		 queue.add(result);
+		 while(!queue.isEmpty()){
+			 TreeNode outNode = queue.poll();
+			 System.out.print(outNode.val+" ");
+			 if(outNode.left!=null){
+				 queue.add(outNode.left);
+			 }
+			 if(outNode.right!=null){
+				 queue.add(outNode.right);
+			 }
+			 
+		 }
+		
+	}
+
+	public static TreeNode reConstructBinaryTree(int [] pre,int [] in) {
 	        if(pre.length == 0||in.length == 0){
 	            return null;
 	        }
-	        TreeNode now = new TreeNode(pre[0]);
+	        ConvertTree main = new ConvertTree();
+	        ConvertTree.TreeNode now = main.new TreeNode(pre[0]);
 	        for(int i=0;i<in.length;i++){
 	           if(pre[0]==in[i]){
 	               now.left = reConstructBinaryTree(Arrays.copyOfRange(pre, 1, i+1),Arrays.copyOfRange(in, 0,i));
