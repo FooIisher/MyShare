@@ -17,15 +17,6 @@ import java.util.Scanner;
 
 public class ConvertTree {
 	
-	public class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-		
-		public TreeNode(int x) { 
-			val = x; 
-		}
-	}
 
 
 	public static void main(String[] args) {
@@ -40,7 +31,7 @@ public class ConvertTree {
 			in[i] = sc.nextInt();
 		}
 		TreeNode result = reConstructBinaryTree(pre,in);
-		
+		sc.close();
 		printLine(result);
 	}
 	
@@ -68,8 +59,8 @@ public class ConvertTree {
 	        if(pre.length == 0||in.length == 0){
 	            return null;
 	        }
-	        ConvertTree main = new ConvertTree();
-	        ConvertTree.TreeNode now = main.new TreeNode(pre[0]);
+	 
+	        TreeNode now = new TreeNode(pre[0]);
 	        for(int i=0;i<in.length;i++){
 	           if(pre[0]==in[i]){
 	               now.left = reConstructBinaryTree(Arrays.copyOfRange(pre, 1, i+1),Arrays.copyOfRange(in, 0,i));
