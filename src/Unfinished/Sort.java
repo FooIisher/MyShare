@@ -1,14 +1,42 @@
 package Unfinished;
 
+import java.nio.channels.SelectableChannel;
+
 public class Sort {
 	
 	/**
-	 * 将两个（或两个以上）有序表合并成一个新的有序表 即把待排序序列分为若干个子序列，每个子序列是有序的。
-	 * 然后再把有序子序列合并为整体有序序列 
-     * 时间复杂度为O(nlogn) 
+	 * 选择排序
+	 * @param nums
+	 * 每次遍历找出最小或最大的元素 与前一个元素交换位置
+	 * 时间复杂度为O(n`2) 
+	 */
+	public static void selectSort(int[] nums){
+		if(nums==null||nums.length==0){
+			return;
+		}
+		int temp = 0,index=0;
+		for(int i =0;i<nums.length;i++){
+			temp=nums[i];
+			index = i;
+			for(int j = i ;j<nums.length;j++){
+				if(temp>nums[j]){
+					temp=nums[j];
+					index=j;
+				}
+			}
+			nums[index]=nums[i];
+			nums[i]=temp;
+		}
+	}
+	
+	/**
+	 * 合并排序
 	 * @param nums
 	 * @param start
 	 * @param end
+	 * 将两个（或两个以上）有序表合并成一个新的有序表 即把待排序序列分为若干个子序列，每个子序列是有序的。
+	 * 然后再把有序子序列合并为整体有序序列 
+     * 时间复杂度为O(nlogn) 
 	 */
 	public static void mergeSort(int[] nums,int start,int end){
 		if(start<end){
@@ -83,7 +111,8 @@ public class Sort {
 	public static void main(String[] args) {
 		int[] nums = {1,2,4,6,7,3,6,8,10};
 //		fastSort(nums, 0, nums.length-1);
-		mergeSort(nums, 0, nums.length-1);
+//		mergeSort(nums, 0, nums.length-1);
+		selectSort(nums);
 		for(int num:nums){
 			System.out.print(num+" ");
 		}
