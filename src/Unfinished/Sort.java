@@ -3,7 +3,59 @@ package Unfinished;
 
 public class Sort {
 	
+	public static void headSort(int[] nums){
+		if(nums==null||nums.length==0){
+			return;
+		}
+		for(int i=0;i<nums.length;i++){
+			createMaxHead(nums,nums.length-1-i);
+			swap(nums,0,nums.length-1-i);
+		}
+	}
 	
+	/**
+	 * 交互数组中俩个位置的值
+	 * @param nums
+	 * @param i
+	 * @param j
+	 */
+	private static void swap(int[] nums, int i, int j) {
+		if(i==j){
+			return;
+		}
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
+	}
+
+	/**
+	 * 创建大顶堆
+	 * @param nums
+	 * @param index
+	 */
+	private static void createMaxHead(int[] nums, int index) {
+		for(int i=(index-1)/2;i>=0;i--){
+			int k = i;//标记上一层节点
+			while(2*k+1<=index){
+				//若该节点的子节点存在
+				int biggerIndex = 2*k+1;
+				if(biggerIndex<index){
+					if(nums[biggerIndex]<nums[biggerIndex+1]){
+						biggerIndex++;
+					}
+				}
+				if(nums[k]<nums[biggerIndex]){
+					swap(nums, k, biggerIndex);
+					k=biggerIndex;
+				}else{
+					break;
+				}
+				
+			}
+		}
+		
+	}
+
 	/**
 	 * 希尔排序
 	 * @param nums
@@ -140,7 +192,8 @@ public class Sort {
 //		fastSort(nums, 0, nums.length-1);
 //		mergeSort(nums, 0, nums.length-1);
 //		selectSort(nums);
-		shellSort(nums);
+//		shellSort(nums);
+		headSort(nums);
 		for(int num:nums){
 			System.out.print(num+" ");
 		}
