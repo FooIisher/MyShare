@@ -1,8 +1,35 @@
 package Unfinished;
 
-import java.nio.channels.SelectableChannel;
 
 public class Sort {
+	
+	
+	/**
+	 * 希尔排序
+	 * @param nums
+	 * 现将待排序的数组元素分成多个子序列，使得每个子序列的元素个数相对较少，
+	 * 然后对各个子序列分别进行直接插入排序，待整个待排序列“基本有序”后，最后在对所有元素进行一次直接插入排序。
+	 * 时间复杂度为O(nlog(n)) 
+	 */
+	public static void shellSort(int[] nums){
+		if(nums==null||nums.length==0){
+			return;
+		}
+		int range = nums.length/2;
+		while(range>=1){
+			for(int i=0;i<nums.length;i++){
+				for(int j=i;j<nums.length-range;j=j+range){
+					//进行插入排序
+					if(nums[j]>nums[j+range]){
+						int temp = nums[j];
+						nums[j] = nums[j+range];
+						nums[j+range] = temp;
+					}
+				}
+			}
+			range = range/2;
+		}
+	}
 	
 	/**
 	 * 选择排序
@@ -112,7 +139,8 @@ public class Sort {
 		int[] nums = {1,2,4,6,7,3,6,8,10};
 //		fastSort(nums, 0, nums.length-1);
 //		mergeSort(nums, 0, nums.length-1);
-		selectSort(nums);
+//		selectSort(nums);
+		shellSort(nums);
 		for(int num:nums){
 			System.out.print(num+" ");
 		}
