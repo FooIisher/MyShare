@@ -3,6 +3,34 @@ package Unfinished;
 
 public class Sort {
 	
+	/**
+	 * 插入排序
+	 * @param nums
+	 * 时间复杂度为O(n`2) 
+	 */
+	public static void insertSort(int[] nums){
+		if(nums==null||nums.length==0){
+			return;
+		}
+		for(int i=1;i<nums.length;i++){
+			if(nums[i-1]>nums[i]){
+				int j = i-1;
+				int temp = nums[i];
+				while(nums[j]>temp){
+					nums[j+1]=nums[j];
+					j--;
+				}
+				nums[j+1]=temp;
+			}
+		}
+	}
+	
+	/**
+	 * 堆排序
+	 * @param nums
+	 * 通过创建顶堆（或者小顶堆）将最大、小以此选出来进行位置交换
+	 * 时间复杂度为O(nlog(n)) 
+	 */
 	public static void headSort(int[] nums){
 		if(nums==null||nums.length==0){
 			return;
@@ -32,6 +60,7 @@ public class Sort {
 	 * 创建大顶堆
 	 * @param nums
 	 * @param index
+	 * 注意：数组中i=(index-1)/2  表示i位置的的父节点   进行堆中遍历交换，大顶推中每次会将数据中最大的数值移到最前端
 	 */
 	private static void createMaxHead(int[] nums, int index) {
 		for(int i=(index-1)/2;i>=0;i--){
@@ -193,7 +222,8 @@ public class Sort {
 //		mergeSort(nums, 0, nums.length-1);
 //		selectSort(nums);
 //		shellSort(nums);
-		headSort(nums);
+//		headSort(nums);
+		insertSort(nums);
 		for(int num:nums){
 			System.out.print(num+" ");
 		}
