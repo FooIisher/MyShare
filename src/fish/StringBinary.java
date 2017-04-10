@@ -1,4 +1,4 @@
-package Unfinished;
+package fish;
 
 import java.util.Scanner;
 
