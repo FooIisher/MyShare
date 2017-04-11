@@ -156,7 +156,13 @@ public class Sort {
 		return;
 	}
 	
-	
+	/**
+	 * 归并排序核心思路：将两个有序序列（start-mid，mid+1-end）进行合并排序
+	 * @param nums
+	 * @param start
+	 * @param mid
+	 * @param end
+	 */
 	private static void mergeSortHandler(int[] nums, int start, int mid, int end) {
 		int[] temp = new int[end-start+1];
 		int i =start;
