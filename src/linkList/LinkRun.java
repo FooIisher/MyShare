@@ -40,11 +40,11 @@ public class LinkRun {
 		
 //		System.out.println("mergeSortLink: "+ mergeSort(head).toString());
 //		System.out.println("insertSortLink: " + insertSort(head).toString());
-//		System.out.println("complicatedSortLink: " + complicatedSort(head).toString());
+		System.out.println("complicatedSortLink: " + complicatedSort(head).toString());
 
 //		System.out.println("checkMirroLink1: " + checkMirroLink1(head));
 //		System.out.println("checkMirroLink2: " + checkMirroLink2(head));
-		System.out.println("deleteDuplication: " + deleteDuplication(head).toString());
+//		System.out.println("deleteDuplication: " + deleteDuplication(head).toString());
 	}
 	/**
 	 * 删除重复的节点

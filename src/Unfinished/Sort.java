@@ -221,6 +221,23 @@ public class Sort {
 		fastSort(nums, start, i-1);
 		fastSort(nums, i+1, end);
 	}
+	
+	/**
+	 * √∞≈›≈≈–Ú
+	 * @param nums
+	 */
+	private static void bubboSort(int[] nums) {
+		for(int i=0;i<nums.length;i++){
+			for(int j=1;j<nums.length-i;j++){
+				if(nums[j-1]>nums[j]){
+					int temp = nums[j-1];
+					nums[j-1] = nums[j];
+					nums[j] = temp;
+				}
+			}
+		}
+	}
+
 
 	public static void main(String[] args) {
 		int[] nums = {1,2,4,6,7,3,6,8,10};
@@ -229,10 +246,12 @@ public class Sort {
 //		selectSort(nums);
 //		shellSort(nums);
 //		headSort(nums);
-		insertSort(nums);
+//		insertSort(nums);
+		bubboSort(nums);
 		for(int num:nums){
 			System.out.print(num+" ");
 		}
 	}
 
+	
 }
