@@ -1,4 +1,4 @@
-package dynamicProgramming;
+package leetCode;
 
 import java.util.HashSet;
 import java.util.Set;
