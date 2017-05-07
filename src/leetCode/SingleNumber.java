@@ -35,4 +35,19 @@ public class SingleNumber {
 			 return result;
 		 }
 	 }
+	 
+	 /**
+	  * 换成出现三个重复的数字
+	  * @param A
+	  * @return
+	  */
+	 public int singleNumber2(int[] A){
+		 int one = 0,two =0;
+		 for(int number:A){
+			 one = (one^number)&~two;
+			 two = (two^number)&~one;
+		 }
+		 return one;
+		 
+	 }
 }
