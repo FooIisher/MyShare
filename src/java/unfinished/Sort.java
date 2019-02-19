@@ -240,14 +240,14 @@ public class Sort {
 
 
 	public static void main(String[] args) {
-		int[] nums = {1,2,4,6,7,3,6,8,10};
-//		fastSort(nums, 0, nums.length-1);
+		int[] nums = {1,2,4,6,7,3,8,10,5,9};;
+		fastSort(nums, 0, nums.length-1);
 //		mergeSort(nums, 0, nums.length-1);
 //		selectSort(nums);
 //		shellSort(nums);
 //		headSort(nums);
 //		insertSort(nums);
-		bubboSort(nums);
+//		bubboSort(nums);
 		for(int num:nums){
 			System.out.print(num+" ");
 		}
